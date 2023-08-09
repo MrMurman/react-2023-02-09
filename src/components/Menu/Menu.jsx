@@ -6,7 +6,11 @@ export const Menu = ({ menu }) => {
   return (
     <div>
       <h3>Menu</h3>
-      <div>{restaurantDishes}</div>
+      <ul>
+        {menu.map(({ name }) => (
+          <li>{name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
