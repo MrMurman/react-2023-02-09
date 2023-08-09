@@ -1,14 +1,15 @@
 import React from "react";
+import { Dish } from "../Dish/Dish";
 
 export const Menu = ({ menu }) => {
-  const restaurantDishes = menu.map(({ name }) => name).join(", ");
-
   return (
     <div>
       <h3>Menu</h3>
       <ul>
-        {menu.map(({ name }) => (
-          <li>{name}</li>
+        {menu.map((menu) => (
+          <li>
+            <Dish menu={menu} />
+          </li>
         ))}
       </ul>
     </div>
