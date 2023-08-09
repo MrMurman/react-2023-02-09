@@ -8,8 +8,8 @@ export const Restaurant = ({ restaurant }) => {
   return (
     <div>
       <h2>{name}</h2>
-      <Menu menu={menu} />
-      <Reviews reviews={reviews} />
+      {!!reviews.length && <Menu menu={menu} />}
+      {reviews.length ? <Reviews reviews={reviews} /> : null}
     </div>
   );
 };
