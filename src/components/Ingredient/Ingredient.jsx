@@ -1,9 +1,9 @@
 import React from "react";
 import { Button } from "../Button/Button";
-import { useState } from "react";
+import { useCount } from "../../hooks/useCount";
 
 export const Ingredient = ({ name }) => {
-  const [count, setCount] = useState(1);
+  const { count, increment, decrement } = useCount({ max: 6, initialValue: 1 });
 
   if (!name) {
     return null;
@@ -16,13 +16,9 @@ export const Ingredient = ({ name }) => {
           <span>{name}</span>
         </div>
         <div>
-          <Button onClick={() => setCount(count - 1)} disabled={count === 0}>
-            -
-          </Button>
+          <Button onClick={decrement}>-</Button>
           {count}
-          <Button onClick={() => setCount(count + 1)} disabled={count === 6}>
-            +
-          </Button>
+          <Button onClick={increment}>+</Button>
         </div>
       </div>
     </div>

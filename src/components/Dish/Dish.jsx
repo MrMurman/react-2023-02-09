@@ -1,31 +1,18 @@
 import React, { useState } from "react";
 import { Button } from "../Button/Button";
 import { Ingredient } from "../Ingredient/Ingredient";
+import { useCount } from "../../hooks/useCount";
 
 export const Dish = ({ dish }) => {
-  // const { name, ingredients } = menu;
-  // let [selectedNumbersOfDishes, updateNumberOfDishes] = useState(0);
-
-  // const updateDishesCount = function (add) {
-  //   let newNumberOfDishes = selectedNumbersOfDishes;
-
-  //   if (add && selectedNumbersOfDishes < 6) {
-  //     newNumberOfDishes += 1;
-  //   } else if (!add && selectedNumbersOfDishes > 0) {
-  //     newNumberOfDishes -= 1;
-  //   }
-
-  //   updateNumberOfDishes(newNumberOfDishes);
-  // };
-
-  const [count, setCount] = useState(0);
+  //const [count, setCount] = useState(0);
+  const { count, increment, decrement } = useCount({ max: 6 });
 
   if (!dish) {
     return null;
   }
 
   const { name, price, ingredients } = dish;
-  const increment = () => setCount(count + 1);
+  //const increment = () => setCount(count + 1);
 
   return (
     <div>
@@ -34,13 +21,9 @@ export const Dish = ({ dish }) => {
           <span>{name}</span>-<span>{price}</span>
         </div>
         <div>
-          <Button onClick={() => setCount(count - 1)} disabled={count === 0}>
-            -
-          </Button>
+          <Button onClick={decrement}>-</Button>
           {count}
-          <Button onClick={() => setCount(count + 1)} disabled={count === 6}>
-            +
-          </Button>
+          <Button onClick={increment}>+</Button>
         </div>
       </div>
       {count > 0 && !!ingredients.length && (
