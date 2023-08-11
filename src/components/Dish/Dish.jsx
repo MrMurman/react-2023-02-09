@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { Button } from "../Button/Button";
 import { Ingredient } from "../Ingredient/Ingredient";
 import { useCount } from "../../hooks/useCount";
+import styles from "./styles.module.css";
+import { SIZE } from "../../constants/size";
+import { BUTTON_VIEW_VARIANT } from "../Button/constants";
+
+// import Plus from "./img/thumb-up-optimized.svg";
+import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
 export const Dish = ({ dish }) => {
   //const [count, setCount] = useState(0);
@@ -15,15 +21,37 @@ export const Dish = ({ dish }) => {
   //const increment = () => setCount(count + 1);
 
   return (
-    <div>
-      <div>
-        <div>
+    <div className={styles.root}>
+      {/* normally u use className as className="root" but simple css import makes it global */}
+      {/* in order to have local css imports, modules are required. They are handled a bit differently */}
+      {/* style={{ backgroundColor: "red", color: "white" }} this is entered inside div*/}
+      <div className={styles.dish}>
+        <div className={styles.title}>
           <span>{name}</span>-<span>{price}</span>
         </div>
-        <div>
-          <Button onClick={decrement}>-</Button>
+        <div className={styles.action}>
+          <Button
+            onClick={decrement}
+            className={styles.action}
+            size={SIZE.s}
+            viewVariant={BUTTON_VIEW_VARIANT.secondary}
+            disabled={count === 0}
+          >
+            -
+          </Button>
           {count}
-          <Button onClick={increment}>+</Button>
+          <Button
+            onClick={increment}
+            className={styles.action}
+            size={SIZE.s}
+            viewVariant={BUTTON_VIEW_VARIANT.secondary}
+            disabled={count === 6}
+          >
+            {/* <div className={styles.incrementActionContent}/>  -- used for unimportant content ie background */}
+            {/* <img className={styles.incrementActionImg} src={Plus} alt="+" />  use for important content */}
+            <Plus />
+            {/* via React elem -- used to have a greater control upon SVG's. But if they are heavy, this will greatly decrease performance*/}
+          </Button>
         </div>
       </div>
       {count > 0 && !!ingredients.length && (

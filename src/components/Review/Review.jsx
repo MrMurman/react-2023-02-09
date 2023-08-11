@@ -1,13 +1,14 @@
 import React from "react";
+import styles from "./styles.module.css";
 
 export const Review = ({ review }) => {
   const { user, text, rating } = review;
 
   return (
-    <React.Fragment>
+    <div className={styles.root}>
       <div>{user}</div>
       <div>{text}</div>
       <div>{rating}</div>
-    </React.Fragment>
+    </div>
   );
 };

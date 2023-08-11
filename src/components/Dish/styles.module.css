@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.dish {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+}
+.action:first-child {
+  margin-right: 5px;
+}
+
+.action:last-child {
+  margin-left: 5px;
+}
+
+.incrementActionContent {
+  background-image: url("./img/thumb-up-optimized.svg");
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* in short, if image is not important, aka, bgrnd, use styles to import */
+/* otherwise use img tag in jsx with */
+.incrementActionImg {
+  max-width: 16px;
+}
+
+.title {
+  font-weight: 600;
+}

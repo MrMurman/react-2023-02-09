@@ -1,5 +1,6 @@
 import React from "react";
 import { Review } from "../Review/Review";
+import { NewReviewForm } from "../NewReviewForm/NewReviewForm";
 
 export const Reviews = ({ reviews }) => {
   const restaurantReviews = reviews.map(({ text }) => text).join(", ");
@@ -17,6 +18,7 @@ export const Reviews = ({ reviews }) => {
             )
         )}
       </ul>
+      <NewReviewForm />
     </div>
   );
 };

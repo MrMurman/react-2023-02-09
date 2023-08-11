@@ -2,6 +2,8 @@ import React from "react";
 import { restaurants } from "./constants/fixtures";
 import { RestaurantPage } from "./pages/RestaurantPage/RestaurantPage";
 
+import "./index.css";
+
 export const App = () => {
   return (
     <div>
