@@ -6,8 +6,9 @@ import styles from "./styles.module.css";
 import { SIZE } from "../../constants/size";
 import { BUTTON_VIEW_VARIANT } from "../Button/constants";
 
-// import Plus from "./img/thumb-up-optimized.svg";
-import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
+import Plus from "./img/thumb-up-optimized.svg";
+import Minus from "./img/thumb-down-optimized.svg";
+// import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
 export const Dish = ({ dish }) => {
   //const [count, setCount] = useState(0);
@@ -37,7 +38,7 @@ export const Dish = ({ dish }) => {
             viewVariant={BUTTON_VIEW_VARIANT.secondary}
             disabled={count === 0}
           >
-            -
+            <img className={styles.decrementActionImg} src={Minus} alt="-" />
           </Button>
           {count}
           <Button
@@ -48,8 +49,9 @@ export const Dish = ({ dish }) => {
             disabled={count === 6}
           >
             {/* <div className={styles.incrementActionContent}/>  -- used for unimportant content ie background */}
-            {/* <img className={styles.incrementActionImg} src={Plus} alt="+" />  use for important content */}
-            <Plus />
+            <img className={styles.incrementActionImg} src={Plus} alt="+" />
+            {/* use for important content */}
+            {/* <Plus /> */}
             {/* via React elem -- used to have a greater control upon SVG's. But if they are heavy, this will greatly decrease performance*/}
           </Button>
         </div>

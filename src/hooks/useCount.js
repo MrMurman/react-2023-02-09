@@ -7,7 +7,7 @@ export const useCount = ({ initialValue = 0, min = 0, max } = {}) => {
     () => count < max && setCount(count + 1),
     [count, max]
   );
-  // this callback works as follows: it takes in a function + an array of dependecies
+  // this callback works as follows: it takes in a function + an array of dependencies
   // then when called, looks for deps, and creates a link to the created func
   // when page re-renders, function is passed again, arguments are calculated
   // then it checks deps from prev round and this round, in case no diff, link is kept, otherwise a new link is generated

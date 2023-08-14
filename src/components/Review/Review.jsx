@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { Rating } from "../Rating/Rating";
 
 export const Review = ({ review }) => {
   const { user, text, rating } = review;
@@ -8,7 +9,9 @@ export const Review = ({ review }) => {
     <div className={styles.root}>
       <div>{user}</div>
       <div>{text}</div>
-      <div>{rating}</div>
+      <div>
+        <Rating value={rating} />
+      </div>
     </div>
   );
 };
