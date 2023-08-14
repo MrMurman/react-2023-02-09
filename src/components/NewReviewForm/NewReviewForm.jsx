@@ -76,7 +76,7 @@ export const NewReviewForm = ({ rating }) => {
         <Rating
           size={SIZE.l}
           value={formValue.rating}
-          onChange={changeRating}
+          onChange={(value) => dispatch({ type: "setRating", payload: value })}
           //(event) => {
           //   dispatch({ type: "setRating", payload: event.currentTarget.id });
           // }}
