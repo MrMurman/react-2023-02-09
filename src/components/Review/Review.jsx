@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 import { Rating } from "../Rating/Rating";
+import { SIZE } from "../../constants/size";
 
 export const Review = ({ review }) => {
   const { user, text, rating } = review;
@@ -10,7 +11,7 @@ export const Review = ({ review }) => {
       <div>{user}</div>
       <div>{text}</div>
       <div>
-        <Rating value={rating} />
+        <Rating value={rating} size={SIZE.s} />
       </div>
     </div>
   );

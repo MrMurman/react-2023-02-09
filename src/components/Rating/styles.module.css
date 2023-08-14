@@ -1,0 +1,26 @@
+.root {
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.s {
+  min-width: 24px;
+  height: 24px;
+  padding: 2px;
+}
+
+.m {
+  min-width: 28px;
+  height: 28px;
+  padding: 4px;
+}
+
+.l {
+  min-width: 32px;
+  height: 32px;
+  padding: 6px;
+}

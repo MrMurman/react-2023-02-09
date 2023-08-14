@@ -1,10 +1,13 @@
 import React, { useReducer, useState } from "react";
 import { Button } from "../Button/Button";
+import { Rating } from "../Rating/Rating";
+import { SIZE } from "../../constants/size";
+import { type } from "@testing-library/user-event/dist/type";
 
 const initialValue = {
   name: "",
   text: "",
-  rating: 0,
+  rating: 1,
 };
 
 //action
@@ -37,7 +40,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const NewReviewForm = () => {
+export const NewReviewForm = ({ rating }) => {
   //   const [name, setName] = useState("");
   //   const [text, setText] = useState("");
   //   const [rating, setRating] = useState(4);
@@ -50,6 +53,11 @@ export const NewReviewForm = () => {
 
   const submit = () => {
     console.log(Object.values(formValue).join(" "));
+  };
+
+  const changeRating = (event) => {
+    console.log(event.currentTarget.id);
+    dispatch({ type: "setRating", payload: event.currentTarget.id });
   };
 
   return (
@@ -65,13 +73,21 @@ export const NewReviewForm = () => {
       </div>
       <div>
         <label>Rating</label>
-        <input
+        <Rating
+          size={SIZE.l}
+          value={formValue.rating}
+          onChange={changeRating}
+          //(event) => {
+          //   dispatch({ type: "setRating", payload: event.currentTarget.id });
+          // }}
+        />
+        {/* <input
           type="number"
           value={formValue.rating} //same as before, but here we get value inside onChange
           onChange={({ target: { value } }) => {
             dispatch({ type: "setRating", payload: value });
           }}
-        />
+        /> */}
       </div>
       <div>
         <label>Text</label>
