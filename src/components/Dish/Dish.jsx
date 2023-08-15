@@ -8,11 +8,21 @@ import { BUTTON_VIEW_VARIANT } from "../Button/constants";
 
 import Plus from "./img/thumb-up-optimized.svg";
 import Minus from "./img/thumb-down-optimized.svg";
+import { useDispatch, useSelector } from "../../CustomRedux";
 // import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
 export const Dish = ({ dish }) => {
   //const [count, setCount] = useState(0);
-  const { count, increment, decrement } = useCount({ max: 6 });
+  //const { count, increment, decrement } = useCount({ max: 6 });
+
+  const count = useSelector((state) => state[dish.name] || 0);
+  const dispatch = useDispatch();
+  const increment = () => {
+    dispatch({ type: "incrementDish", payload: dish.name });
+  };
+  const decrement = () => {
+    dispatch({ type: "decrementDish", payload: dish.name });
+  };
 
   if (!dish) {
     return null;

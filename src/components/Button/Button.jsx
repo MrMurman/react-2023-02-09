@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import styles from "./styles.module.css";
 import { BUTTON_VIEW_VARIANT } from "./constants";
