@@ -9,10 +9,12 @@ import Plus from "./img/thumb-up-optimized.svg";
 import Minus from "./img/thumb-down-optimized.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDishCount } from "../../store/cart/selectors";
+import { selectDishByID } from "../../store/entities/dish/selectors";
 // import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
 export const Dish = ({ dishID }) => {
-  const dish = useSelector((state) => selectDishByID(stat, { dishID }));
+  const dish = useSelector((state) => selectDishByID(state, { dishID }));
+  console.log("dish: ", dish);
   //const [count, setCount] = useState(0);
   //const { count, increment, decrement } = useCount({ max: 6 });
 
