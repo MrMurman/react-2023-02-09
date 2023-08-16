@@ -1,8 +1,10 @@
 import React from "react";
-import { useSelector } from "../../CustomRedux";
+import { useSelector } from "react-redux";
+import { selectCartEntries } from "../../store/cart/selectors";
 
 export const Cart = () => {
-  const cart = useSelector((state) => Object.entries(state));
+  //const cart = useSelector((state) => selectCartEntries(state));
+  const cart = useSelector(selectCartEntries);
 
   return (
     <ul>

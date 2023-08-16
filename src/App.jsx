@@ -3,18 +3,16 @@ import { restaurants } from "./constants/fixtures";
 import { RestaurantPage } from "./pages/RestaurantPage/RestaurantPage";
 
 import "./index.css";
-import { ThemeContext } from "./contexts/ThemeContext/context";
-import { ThemeContextProvider } from "./contexts/provider";
-import { StoreProvider } from "./CustomRedux";
 import { store } from "./store";
+import { Provider } from "react-redux";
 
 export const App = () => {
   return (
-    <StoreProvider store={store}>
+    <Provider store={store}>
       <div>
-        <RestaurantPage restaurants={restaurants} />
+        <RestaurantPage />
       </div>
-    </StoreProvider>
+    </Provider>
   );
 };
 

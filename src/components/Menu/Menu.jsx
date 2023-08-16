@@ -1,14 +1,19 @@
 import React from "react";
 import { Dish } from "../Dish/Dish";
+import { useSelector } from "react-redux";
+import { selectRestaurantMenuByID } from "../../store/entities/restaurant/selectors";
 
-export const Menu = ({ menu }) => {
+export const Menu = ({ restaurantID }) => {
+  const menu = useSelector((state) =>
+    selectRestaurantMenuByID(state, { restaurantID })
+  );
   return (
     <div>
       <h3>Menu</h3>
       <ul>
-        {menu.map((menu) => (
+        {menu.map((dishID) => (
           <li>
-            <Dish dish={menu} />
+            <Dish dishID={dishID} />
           </li>
         ))}
       </ul>

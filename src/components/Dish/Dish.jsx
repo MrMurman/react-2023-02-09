@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { Button } from "../Button/Button";
 import { Ingredient } from "../Ingredient/Ingredient";
-import { useCount } from "../../hooks/useCount";
 import styles from "./styles.module.css";
 import { SIZE } from "../../constants/size";
 import { BUTTON_VIEW_VARIANT } from "../Button/constants";
 
 import Plus from "./img/thumb-up-optimized.svg";
 import Minus from "./img/thumb-down-optimized.svg";
-import { useDispatch, useSelector } from "../../CustomRedux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDishCount } from "../../store/cart/selectors";
 // import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
-export const Dish = ({ dish }) => {
+export const Dish = ({ dishID }) => {
+  const dish = useSelector((state) => selectDishByID(stat, { dishID }));
   //const [count, setCount] = useState(0);
   //const { count, increment, decrement } = useCount({ max: 6 });
 
-  const count = useSelector((state) => state[dish.name] || 0);
+  const count = useSelector((state) =>
+    selectDishCount(state, { dishName: dish.name })
+  );
   const dispatch = useDispatch();
   const increment = () => {
     dispatch({ type: "incrementDish", payload: dish.name });

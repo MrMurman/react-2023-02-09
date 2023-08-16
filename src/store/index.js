@@ -1,21 +1,19 @@
-import { createStore } from "../CustomRedux";
+import { combineReducers, createStore } from "redux";
+import { cartReducer } from "./cart/reducer";
+import { restaurantReducer } from "./entities/restaurant/reducer";
 
-const rootReducer = (state = {}, action = {}) => {
-  switch (action.type) {
-    case "incrementDish":
-      return {
-        ...state,
-        [action.payload]: state[action.payload] ? state[action.payload] + 1 : 1,
-      };
-    case "decrementDish":
-      return {
-        ...state,
-        [action.payload]:
-          state[action.payload] !== 0 ? state[action.payload] - 1 : 0,
-      };
-    default:
-      return state;
-  }
-};
+// const rootReducer = (state = {}, action = {}) => {
+//   return {
+//     cart: cartReducer(state.cart, action),
+//     restaurant: restaurantReducer(state.restaurant, action),
+//   };
+// };
+
+const rootReducer = combineReducers({
+  cart: cartReducer,
+  restaurant: restaurantReducer,
+});
 
 export const store = createStore(rootReducer);
+
+console.log("state", store.getState());
