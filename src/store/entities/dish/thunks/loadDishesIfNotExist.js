@@ -18,7 +18,7 @@ export const loadDishesIfNotExist = (restaurantID) => (dispatch, getState) => {
 
   dispatch(startLoadingDishes());
 
-  fetch("http://localhost:3001/api/products?id=${restaurantID}")
+  fetch("http://localhost:3001/api/products?restaurantId=${restaurantID}")
     .then((response) => response.json())
     .then((dishes) => dispatch(finishLoadingDishes(dishes)))
     .catch(() => dispatch(failLoadingDishes()));

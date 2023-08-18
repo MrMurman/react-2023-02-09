@@ -22,7 +22,7 @@ export const dishReducer = (state = initialState, action) => {
           }, {}),
         },
         ids: Array.from(
-          new Set([...state.ids, action.payload.map(({ id }) => id)])
+          new Set([...state.ids, ...action.payload.map(({ id }) => id)])
         ),
         status: REQUEST_STATUSES.success,
       };

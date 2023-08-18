@@ -12,6 +12,7 @@ import {
   selectRestaurantIDs,
 } from "../../store/entities/restaurant/selectors";
 import { loadRestaurants } from "../../store/entities/restaurant/actions";
+import { loadRestaurantsAction } from "../../store/entities/restaurant";
 
 export const RestaurantPage = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export const RestaurantPage = () => {
   const isLoaded = useSelector(selectIsRestaurantLoaded);
 
   useEffect(() => {
-    dispatch(loadRestaurants());
+    dispatch(loadRestaurantsAction());
   }, []);
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+import { loadRestaurantsAction, restaurantActions, restaurantSlice } from "..";
 import {
   RESTAURANT_ACTIONS,
   failLoadingRestaurants,
@@ -7,7 +8,7 @@ import {
 import { selectRestaurantIDs } from "../selectors";
 
 export const loadRestaurantIfNotExist = (store) => (next) => (action) => {
-  if (action?.type !== RESTAURANT_ACTIONS.load) {
+  if (action?.type !== loadRestaurantsAction.type) {
     return next(action);
   }
 
@@ -17,11 +18,14 @@ export const loadRestaurantIfNotExist = (store) => (next) => (action) => {
     return;
   }
 
-  store.dispatch(startLoadingRestaurants());
+  //store.dispatch(startLoadingRestaurants());
+  // likewise everuthing below is updtated from actions written by us to Slice
+  //store.dispatch(restaurantSlice.actions.startLoading());
+  store.dispatch(restaurantActions.startLoading());
   fetch("http://localhost:3001/api/restaurants/")
     .then((response) => response.json())
     .then((restaurants) =>
-      store.dispatch(finishLoadingRestaurants(restaurants))
+      store.dispatch(restaurantSlice.actions.finishLoading(restaurants))
     )
-    .catch(failLoadingRestaurants());
+    .catch(restaurantSlice.actions.failLoading());
 };

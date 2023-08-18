@@ -5,11 +5,10 @@ import { dishReducer } from "./entities/dish/reducer";
 import { reviewReducer } from "./entities/review/reducer";
 import { userReducer } from "./entities/user/reducer";
 import { logger } from "./middleware/logger";
-import {
-  loadRestaurantIfNotExist,
-  loadRestaurantsIfNotExist,
-} from "./entities/restaurant/middleware/loadRestaurantsIfNotExist";
 import { customThunk } from "./middleware/customThunk";
+import { configureStore } from "@reduxjs/toolkit";
+import { restaurantSlice } from "./entities/restaurant";
+import { loadRestaurantIfNotExist } from "./entities/restaurant/middleware/loadRestaurantsIfNotExist";
 
 // const rootReducer = (state = {}, action = {}) => {
 //   return {
@@ -20,15 +19,29 @@ import { customThunk } from "./middleware/customThunk";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
-  restaurant: restaurantReducer,
+  // restaurant: restaurantReducer,
+  restaurant: restaurantSlice.reducer,
   dish: dishReducer,
   review: reviewReducer,
   user: userReducer,
 });
 
-export const store = createStore(
-  rootReducer,
-  applyMiddleware(customThunk, logger, loadRestaurantIfNotExist)
-);
+// export const store = createStore(
+//   rootReducer,
+//   applyMiddleware(customThunk, logger, loadRestaurantIfNotExist)
+// );
+
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleWare) =>
+    getDefaultMiddleWare().concat([
+      //customThunk,
+      logger,
+      loadRestaurantIfNotExist,
+    ]),
+});
+
+// in toolKit you get defaultMiddlewares with thunks, this is why customthunk is no longer needed
+// in order to leverage defalut stuff, u need to concat your own array with the func result
 
 console.log("state", store.getState());
