@@ -3,6 +3,8 @@ import { Dish } from "../Dish/Dish";
 import { useSelector } from "react-redux";
 import { selectRestaurantMenuByID } from "../../store/entities/restaurant/selectors";
 
+import styles from "./styles.module.css";
+
 export const Menu = ({ restaurantID }) => {
   const menu = useSelector((state) =>
     selectRestaurantMenuByID(state, { restaurantID })
@@ -10,13 +12,11 @@ export const Menu = ({ restaurantID }) => {
   return (
     <div>
       <h3>Menu</h3>
-      <ul>
+      <div className={StyleSheet.dishes}>
         {menu.map((dishID) => (
-          <li>
-            <Dish dishID={dishID} />
-          </li>
+          <Dish dishID={dishID} className={styles.dish} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

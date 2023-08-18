@@ -8,22 +8,20 @@ import {
   selectReviewUserByID,
 } from "../../store/entities/review/selectors";
 import { User } from "../User/User";
+import classNames from "classnames";
 
-export const Review = ({ reviewID }) => {
+export const Review = ({ reviewID, className }) => {
   const review = useSelector((state) => selectReviewByID(state, { reviewID }));
   const { userId, text, rating } = review;
 
-  console.log(userId);
-
   return (
-    <div className={styles.root}>
-      <div>
+    <div className={classNames(styles.root, className)}>
+      <div className={styles.header}>
         <User userID={userId} />
-      </div>
-      <div>{text}</div>
-      <div>
         <Rating value={rating} size={SIZE.s} />
       </div>
+
+      <div>{text}</div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Review } from "../Review/Review";
 import { NewReviewForm } from "../NewReviewForm/NewReviewForm";
 import { useSelector } from "react-redux";
 import { selectRestaurantReviewsByID } from "../../store/entities/restaurant/selectors";
+import styles from "./styles.module.css";
 
 export const Reviews = ({ restaurantID }) => {
   const reviews = useSelector((state) =>
@@ -12,13 +13,11 @@ export const Reviews = ({ restaurantID }) => {
   return (
     <div>
       <h3>Reviews</h3>
-      <ul>
+      <div className={styles.reviews}>
         {reviews.map((reviewID) => (
-          <li>
-            <Review reviewID={reviewID} />
-          </li>
+          <Review className={styles.review} reviewID={reviewID} />
         ))}
-      </ul>
+      </div>
       <NewReviewForm />
     </div>
   );

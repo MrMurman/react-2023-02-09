@@ -1,3 +1,15 @@
 .root {
   display: flex;
 }
+
+.tab:first-child {
+  margin-left: auto;
+}
+
+.tab:last-child {
+  margin-right: auto;
+}
+
+tab:not(:last-child) {
+  margin-right: 10px;
+}

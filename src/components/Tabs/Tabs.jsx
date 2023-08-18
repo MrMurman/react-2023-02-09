@@ -11,6 +11,7 @@ export const Tabs = ({ tabs, onTabClick, activeID }) => {
           title={title}
           onClick={() => onTabClick(id)}
           isActive={activeID === id}
+          className={styles.tab}
         />
       ))}
     </div>

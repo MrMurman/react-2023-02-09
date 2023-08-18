@@ -10,11 +10,11 @@ import Minus from "./img/thumb-down-optimized.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDishCount } from "../../store/cart/selectors";
 import { selectDishByID } from "../../store/entities/dish/selectors";
+import classNames from "classnames";
 // import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
-export const Dish = ({ dishID }) => {
+export const Dish = ({ dishID, className }) => {
   const dish = useSelector((state) => selectDishByID(state, { dishID }));
-  console.log("dish: ", dish);
   //const [count, setCount] = useState(0);
   //const { count, increment, decrement } = useCount({ max: 6 });
 
@@ -37,7 +37,7 @@ export const Dish = ({ dishID }) => {
   //const increment = () => setCount(count + 1);
 
   return (
-    <div className={styles.root}>
+    <div className={classNames(styles.root, className)}>
       {/* normally u use className as className="root" but simple css import makes it global */}
       {/* in order to have local css imports, modules are required. They are handled a bit differently */}
       {/* style={{ backgroundColor: "red", color: "white" }} this is entered inside div*/}
