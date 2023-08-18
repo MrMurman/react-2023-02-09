@@ -1,14 +1,35 @@
-import { normalizedProducts } from "../../../constants/normalized-fixtures";
+import { REQUEST_STATUSES } from "../../../constants/statuses";
+import { DISH_ACTIONS } from "./actions";
 
 const initialState = {
-  entities: normalizedProducts.reduce((acc, product) => {
-    acc[product.id] = product;
-    return acc;
-  }, {}),
-  ids: normalizedProducts.map(({ id }) => id),
+  entities: {},
+  ids: [],
+  status: REQUEST_STATUSES.idle,
 };
 
 export const dishReducer = (state = initialState, action) => {
-  console.log("initial state in reducer", initialState);
-  return state;
+  switch (action?.type) {
+    case DISH_ACTIONS.startLoading:
+      return { ...state, status: REQUEST_STATUSES.pending };
+    case DISH_ACTIONS.finishLoading:
+      return {
+        entities: {
+          ...state.entities,
+          ...action.payload.reduce((acc, product) => {
+            acc[product.id] = product;
+
+            return acc;
+          }, {}),
+        },
+        ids: Array.from(
+          new Set([...state.ids, action.payload.map(({ id }) => id)])
+        ),
+        status: REQUEST_STATUSES.success,
+      };
+    case DISH_ACTIONS.failLoading:
+      return { ...state, status: REQUEST_STATUSES.failed };
+
+    default:
+      return state;
+  }
 };

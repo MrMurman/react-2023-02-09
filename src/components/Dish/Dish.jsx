@@ -19,7 +19,7 @@ export const Dish = ({ dishID, className }) => {
   //const { count, increment, decrement } = useCount({ max: 6 });
 
   const count = useSelector((state) =>
-    selectDishCount(state, { dishName: dish.name })
+    selectDishCount(state, { dishName: dish?.name })
   );
   const dispatch = useDispatch();
   const increment = () => {
