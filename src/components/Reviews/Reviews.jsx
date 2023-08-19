@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Review } from "../Review/Review";
 import { NewReviewForm } from "../NewReviewForm/NewReviewForm";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurantReviewsByID } from "../../store/entities/restaurant/selectors";
 import styles from "./styles.module.css";
+import { loadReviewIfNotExist } from "../../store/entities/review/thunks/loadReviewIfNotExist";
+import { selectIsReviewLoading } from "../../store/entities/review/selectors";
+import { loadUserIfNotExist } from "../../store/entities/user/thunks/loadUserIfNotExist";
 
 export const Reviews = ({ restaurantID }) => {
+  const dispatch = useDispatch();
   const reviews = useSelector((state) =>
     selectRestaurantReviewsByID(state, { restaurantID })
   );
+
+  useEffect(() => {
+    dispatch(loadReviewIfNotExist(restaurantID));
+    dispatch(loadUserIfNotExist(restaurantID));
+  }, [restaurantID]);
+
+  const isLoading = useSelector(selectIsReviewLoading);
+
+  //console.log("reviews in Reviews", reviews);
+
+  if (isLoading) {
+    return <span>Loading ...</span>;
+  }
 
   return (
     <div>

@@ -16,6 +16,9 @@ export const selectRestaurantMenuByID = (state, { restaurantID }) =>
 export const selectRestaurantReviewsByID = (state, { restaurantID }) =>
   selectRestaurantByID(state, { restaurantID })?.reviews;
 
+export const selectRestaurantUsersById = (state, { restaurantId }) =>
+  selectRestaurantByID(state, { restaurantId })?.user;
+
 export const selectRestaurantLoadingStatus = (state) =>
   selectRestaurantModule(state).status;
 
