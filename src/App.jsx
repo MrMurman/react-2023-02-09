@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { restaurants } from "./constants/fixtures";
 import { RestaurantPage } from "./pages/RestaurantPage/RestaurantPage";
 
 import "./index.css";
-import { store } from "./store";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
+import { loadUserIfNotExist } from "./store/entities/user/thunks/loadUserIfNotExist";
 
 export const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUserIfNotExist());
+  }, []);
+
   return (
-    <Provider store={store}>
-      <div>
-        <RestaurantPage />
-      </div>
-    </Provider>
+    <div>
+      <RestaurantPage />
+    </div>
   );
 };
 

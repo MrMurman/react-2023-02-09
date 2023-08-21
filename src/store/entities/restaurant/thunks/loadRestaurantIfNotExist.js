@@ -1,4 +1,4 @@
-import { loadRestaurantsAction, restaurantActions, restaurantSlice } from "..";
+import { restaurantActions } from "..";
 import { selectRestaurantIDs } from "../selectors";
 
 export const loadRestaurantIfNotExist = () => (dispatch, getState) => {
@@ -16,5 +16,5 @@ export const loadRestaurantIfNotExist = () => (dispatch, getState) => {
     .then((restaurants) =>
       dispatch(restaurantActions.finishLoading(restaurants))
     )
-    .catch(restaurantActions.failLoading());
+    .catch(() => restaurantActions.failLoading());
 };

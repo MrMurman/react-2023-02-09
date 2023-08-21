@@ -9,7 +9,7 @@ import { userSlice } from "./entities/user";
 import { cartSlice } from "./cart";
 
 const rootReducer = combineReducers({
-  cart: cartSlice.reducer,
+  cart: cartReducer,
   // restaurant: restaurantReducer,
   restaurant: restaurantSlice.reducer,
   dish: dishSlice.reducer,

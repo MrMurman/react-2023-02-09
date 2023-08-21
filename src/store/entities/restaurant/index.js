@@ -33,4 +33,4 @@ export const restaurantActions = {
   ...restaurantSlice.actions,
   loadRestaurantsAction: createAction("restaurant/load"),
 };
-export const loadRestaurantsAction = createAction("restaurant/load");
+// export const loadRestaurantsAction = createAction("restaurant/load");

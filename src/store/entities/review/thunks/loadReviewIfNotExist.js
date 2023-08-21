@@ -9,11 +9,10 @@ export const loadReviewIfNotExist = (restaurantID) => (dispatch, getState) => {
     restaurantID,
   });
   const reviewIds = selectReviewIDs(state);
-  console.log("here");
+
   if (restaurantReviewsIDs?.every((id) => reviewIds?.includes(id))) {
     return;
   }
-  console.log("here");
 
   dispatch(reviewActions.startLoading());
   fetch("http://localhost:3001/api/reviews?restaurantId=${restaurantID}")

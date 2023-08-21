@@ -1,7 +1,7 @@
 import { userActions } from "..";
 import { selectUserIDs } from "../selectors";
 
-export const loadUserIfNotExist = (restaurantID) => (dispatch, getState) => {
+export const loadUserIfNotExist = () => (dispatch, getState) => {
   const state = getState();
 
   const userIds = selectUserIDs(state);
@@ -11,8 +11,8 @@ export const loadUserIfNotExist = (restaurantID) => (dispatch, getState) => {
   }
 
   dispatch(userActions.startLoading());
-  fetch("http://localhost:3001/api/users?restaurantId=${restaurantID}/")
+  fetch("http://localhost:3001/api/users/")
     .then((response) => response.json())
     .then((users) => dispatch(userActions.finishLoading(users)))
-    .catch(userActions.failLoading());
+    .catch(() => userActions.failLoading());
 };

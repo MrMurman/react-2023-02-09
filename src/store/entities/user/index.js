@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const userSlice = createSlice({
-  name: "review",
+  name: "user",
   initialState,
   reducers: {
     startLoading: (state) => {

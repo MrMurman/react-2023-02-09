@@ -22,8 +22,19 @@ export const reviewSlice = createSlice({
         acc[review.id] = review;
 
         return acc;
-      }, {});
-      state.ids = payload.map(({ id }) => id);
+      }, state.entities);
+
+      // state.entities = {
+      //   ...state.entities,
+      //   ...payload.reduce((acc, review) => {
+      //     acc[review.id] = review
+
+      //     return acc
+      //   }, {})
+      // } just as same as above
+      state.ids = Array.from(
+        new Set([...state.ids, ...payload.map(({ id }) => id)])
+      );
       state.status = REQUEST_STATUSES.success;
     },
   },

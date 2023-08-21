@@ -10,6 +10,7 @@ import {
 } from "../../store/entities/restaurant/selectors";
 import { loadRestaurantsAction } from "../../store/entities/restaurant";
 import { loadRestaurantIfNotExist } from "../../store/entities/restaurant/thunks/loadRestaurantIfNotExist";
+import { loadUserIfNotExist } from "../../store/entities/user/thunks/loadUserIfNotExist";
 
 export const RestaurantPage = () => {
   const dispatch = useDispatch();

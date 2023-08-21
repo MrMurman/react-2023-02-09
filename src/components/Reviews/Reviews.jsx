@@ -16,7 +16,6 @@ export const Reviews = ({ restaurantID }) => {
 
   useEffect(() => {
     dispatch(loadReviewIfNotExist(restaurantID));
-    dispatch(loadUserIfNotExist(restaurantID));
   }, [restaurantID]);
 
   const isLoading = useSelector(selectIsReviewLoading);
