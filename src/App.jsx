@@ -5,6 +5,12 @@ import { RestaurantPage } from "./pages/RestaurantPage/RestaurantPage";
 import "./index.css";
 import { Provider, useDispatch } from "react-redux";
 import { loadUserIfNotExist } from "./store/entities/user/thunks/loadUserIfNotExist";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CartPage } from "./pages/CartPage/CartPage";
+import { Header } from "./components/Header/Header";
+import { HomePage } from "./pages/HomePage/HomePage";
+import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
+import { Restaurant } from "./components/Restaurant/Restaurant";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -13,9 +19,20 @@ export const App = () => {
   }, []);
 
   return (
-    <div>
-      <RestaurantPage />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="restaurants" element={<RestaurantPage />}>
+            <Route path=":restaurantID" element={<Restaurant />}></Route>
+          </Route>
+          <Route path="cart" element={<CartPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        {/* <RestaurantPage /> */}
+      </div>
+    </BrowserRouter>
   );
 };
 

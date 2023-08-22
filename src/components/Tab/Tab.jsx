@@ -1,13 +1,19 @@
 import React from "react";
 import { Button } from "../Button/Button";
+import { NavLink } from "react-router-dom";
 
-export const Tab = ({ onClick, title, isActive, className }) => {
+export const Tab = ({ to, title, className }) => {
+  //                { onClick, title, isActive, className }
   return (
-    <Button
-      children={title}
-      onClick={onClick}
-      disabled={isActive}
-      className={className}
-    />
+    <NavLink to={to} className={className}>
+      {({ isActive }) => (
+        <Button
+          disabled={isActive}
+          children={title}
+          // onClick={onClick}
+          // disabled={isActive}
+        />
+      )}
+    </NavLink>
   );
 };

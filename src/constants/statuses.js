@@ -3,4 +3,5 @@ export const REQUEST_STATUSES = {
   pending: "pending",
   success: "success",
   failed: "failed",
+  earlyLoaded: "earlyLoaded",
 };

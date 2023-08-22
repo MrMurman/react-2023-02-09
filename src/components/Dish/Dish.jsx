@@ -14,7 +14,7 @@ import classNames from "classnames";
 // import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
 export const Dish = ({ dishID, className }) => {
-  const dish = useSelector((state) => selectDishByID(state, { dishID }));
+  const dish = useSelector((state) => selectDishByID(state, dishID)); //used to be {dishID}, but we changed selector
   //const [count, setCount] = useState(0);
   //const { count, increment, decrement } = useCount({ max: 6 });
 

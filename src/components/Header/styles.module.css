@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  padding: 0 20px;
+
+  height: 60px;
+  width: 100%;
+
+  background-color: rgba(20, 20, 20, 0.95);
+}
+
+.logo {
+  margin-right: auto;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.link:not(:last-child) {
+  margin-right: 10px;
+}

@@ -1,15 +1,16 @@
+import { dishEntityAdapter } from ".";
 import { REQUEST_STATUSES } from "../../../constants/statuses";
 
 export const selectDishModule = (state) => state.dish;
+const dishSelectors = dishEntityAdapter.getSelectors(selectDishModule);
 
-export const selectDishByID = (state, { dishID }) => {
-  //   console.log("dishID inide selector", dishID);
-  //   console.log("state inide selector", selectDishModule(state));
-  //   console.log("general state", state);
-  return selectDishModule(state).entities[dishID];
-};
+export const selectDishByID = dishSelectors.selectById;
+// = (state, { dishID }) => selectDishModule(state).entities[dishID];
 
-export const selectDishIDs = (state) => selectDishModule(state).ids;
+export const selectDishIDs = dishSelectors.selectIds;
+// = (state) => selectDishModule(state).ids;
+
+export const selectDishes = dishSelectors.selectAll;
 
 export const selectDishLoadingStatus = (state) =>
   selectDishModule(state).status;

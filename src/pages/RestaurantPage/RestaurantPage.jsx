@@ -9,44 +9,49 @@ import {
   selectRestaurantIDs,
 } from "../../store/entities/restaurant/selectors";
 import { loadRestaurantsAction } from "../../store/entities/restaurant";
-import { loadRestaurantIfNotExist } from "../../store/entities/restaurant/thunks/loadRestaurantIfNotExist";
+import {
+  loadRestaurantIfNotExist,
+  loadRestaurantIfNotExistAsync,
+} from "../../store/entities/restaurant/thunks/loadRestaurantIfNotExist";
 import { loadUserIfNotExist } from "../../store/entities/user/thunks/loadUserIfNotExist";
+import styles from "./styles.module.css";
+import { Outlet } from "react-router-dom";
 
 export const RestaurantPage = () => {
   const dispatch = useDispatch();
-  const restaurantIds = useSelector(selectRestaurantIDs);
-  const [activeRestaurantID, setActiveRestaurantID] = useState(
-    restaurantIds[0]
-  );
+  // const restaurantIds = useSelector(selectRestaurantIDs);
+  // const [activeRestaurantID, setActiveRestaurantID] = useState(
+  //   restaurantIds[0]
+  // );
 
   const isLoading = useSelector(selectIsRestaurantLoading);
-  const isLoaded = useSelector(selectIsRestaurantLoaded);
+  // const isLoaded = useSelector(selectIsRestaurantLoaded);
 
   useEffect(() => {
-    dispatch(loadRestaurantIfNotExist());
+    dispatch(loadRestaurantIfNotExistAsync());
   }, []);
 
-  useEffect(() => {
-    if (isLoaded) {
-      setActiveRestaurantID(restaurantIds[0]);
-    }
-  }, [isLoaded]);
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     setActiveRestaurantID(restaurantIds[0]);
+  //   }
+  // }, [isLoaded]);
 
-  if (!activeRestaurantID) {
-    return null;
-  }
+  // if (!activeRestaurantID) {
+  //   return null;
+  // }
 
   if (isLoading) {
     return <span>Loading...</span>;
   }
   return (
-    <div>
+    <div className={styles.root}>
       <RestaurantTabs
-        activeID={activeRestaurantID}
-        onTabClick={setActiveRestaurantID}
+      // activeID={activeRestaurantID}
+      // onTabClick={setActiveRestaurantID}
       />
-      {activeRestaurantID && <Restaurant restaurantID={activeRestaurantID} />}
-      <Cart />
+      <Outlet />
+      {/* {activeRestaurantID && <Restaurant restaurantID={activeRestaurantID} />} */}
     </div>
   );
 };
