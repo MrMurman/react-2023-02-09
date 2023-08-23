@@ -7,9 +7,10 @@ import styles from "./styles.module.css";
 import { loadDishesIfNotExist } from "../../store/entities/dish/thunks/loadDishesIfNotExist";
 import { selectIsDishLoading } from "../../store/entities/dish/selectors";
 import { Button } from "../Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export const Menu = ({ restaurantID }) => {
+export const Menu = () => {
+  const { restaurantID } = useParams();
   const dispatch = useDispatch();
   const menu = useSelector((state) =>
     selectRestaurantMenuByID(state, { restaurantID })

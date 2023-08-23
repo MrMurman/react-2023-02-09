@@ -11,6 +11,9 @@ import { Header } from "./components/Header/Header";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { Restaurant } from "./components/Restaurant/Restaurant";
+import { Menu } from "./components/Menu/Menu";
+import { Review } from "./components/Review/Review";
+import { Reviews } from "./components/Reviews/Reviews";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -27,7 +30,11 @@ export const App = () => {
           <Route path="restaurants" element={<RestaurantPage />}>
             <Route index element={<span>Select restaurant</span>} />
             {/* only one index path and "*" per level of nesting */}
-            <Route path=":restaurantID" element={<Restaurant />}></Route>{" "}
+            <Route path=":restaurantID" element={<Restaurant />}>
+              <Route index element={<Navigate to="menu" />} />
+              <Route path="menu" element={<Menu />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
             {/*: inside path means that it is placeholder text. This text can be virtually anything */}
           </Route>
           <Route path="cart" element={<CartPage />} />

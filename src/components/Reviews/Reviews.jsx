@@ -7,8 +7,12 @@ import styles from "./styles.module.css";
 import { loadReviewIfNotExist } from "../../store/entities/review/thunks/loadReviewIfNotExist";
 import { selectIsReviewLoading } from "../../store/entities/review/selectors";
 import { loadUserIfNotExist } from "../../store/entities/user/thunks/loadUserIfNotExist";
+import { useParams } from "react-router-dom";
 
-export const Reviews = ({ restaurantID }) => {
+export const Reviews = () => {
+  const { restaurantID } = useParams();
+  console.log(restaurantID);
+
   const dispatch = useDispatch();
   const reviews = useSelector((state) =>
     selectRestaurantReviewsByID(state, { restaurantID })
@@ -34,7 +38,7 @@ export const Reviews = ({ restaurantID }) => {
           <Review className={styles.review} reviewID={reviewID} />
         ))}
       </div>
-      <NewReviewForm />
+      {/* <NewReviewForm /> */}
     </div>
   );
 };
