@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 
 export const Restaurant = () => {
   // we used to have restaurantID passed down as props, but now we use hook to receive it
-  const { restaurantID } = useParams();
+  const { restaurantID } = useParams(); // here should be passed the exact placeholder text from path
+
   const restaurant = useSelector((state) =>
     selectRestaurantByID(state, { restaurantID })
   );

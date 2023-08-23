@@ -6,6 +6,8 @@ import { selectRestaurantMenuByID } from "../../store/entities/restaurant/select
 import styles from "./styles.module.css";
 import { loadDishesIfNotExist } from "../../store/entities/dish/thunks/loadDishesIfNotExist";
 import { selectIsDishLoading } from "../../store/entities/dish/selectors";
+import { Button } from "../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 export const Menu = ({ restaurantID }) => {
   const dispatch = useDispatch();
@@ -13,6 +15,8 @@ export const Menu = ({ restaurantID }) => {
     selectRestaurantMenuByID(state, { restaurantID })
   );
   const isLoading = useSelector(selectIsDishLoading);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(loadDishesIfNotExist(restaurantID));
@@ -29,6 +33,11 @@ export const Menu = ({ restaurantID }) => {
           <Dish dishID={dishID} className={styles.dish} />
         ))}
       </div>
+      <Button onClick={() => navigate("/cart")}>
+        {/* we use {replace: true} after path so that user wont get
+         into infinite cycles of redirecting */}
+        Перейти к заказу
+      </Button>
     </div>
   );
 };

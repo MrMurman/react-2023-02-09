@@ -6,6 +6,9 @@ const dishSelectors = dishEntityAdapter.getSelectors(selectDishModule);
 
 export const selectDishByID = dishSelectors.selectById;
 // = (state, { dishID }) => selectDishModule(state).entities[dishID];
+// alternatively, if we wish to save earlier call with {dishID}, we can do this
+// const selectDishByID = (state, {dishID}) => dishSelectors.selectByID(state, dishID)
+// this is an exact function handler that envelops the required func and passes "cultivated" args
 
 export const selectDishIDs = dishSelectors.selectIds;
 // = (state) => selectDishModule(state).ids;

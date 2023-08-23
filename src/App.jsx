@@ -5,7 +5,7 @@ import { RestaurantPage } from "./pages/RestaurantPage/RestaurantPage";
 import "./index.css";
 import { Provider, useDispatch } from "react-redux";
 import { loadUserIfNotExist } from "./store/entities/user/thunks/loadUserIfNotExist";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { CartPage } from "./pages/CartPage/CartPage";
 import { Header } from "./components/Header/Header";
 import { HomePage } from "./pages/HomePage/HomePage";
@@ -25,9 +25,13 @@ export const App = () => {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="restaurants" element={<RestaurantPage />}>
-            <Route path=":restaurantID" element={<Restaurant />}></Route>
+            <Route index element={<span>Select restaurant</span>} />
+            {/* only one index path and "*" per level of nesting */}
+            <Route path=":restaurantID" element={<Restaurant />}></Route>{" "}
+            {/*: inside path means that it is placeholder text. This text can be virtually anything */}
           </Route>
           <Route path="cart" element={<CartPage />} />
+          <Route path="redirect" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         {/* <RestaurantPage /> */}
