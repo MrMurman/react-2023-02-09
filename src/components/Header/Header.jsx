@@ -15,6 +15,9 @@ export const Header = () => {
       <Link to="/restaurants" className={styles.link}>
         Restaurants
       </Link>
+      <Link to="/allDishes" className={styles.link}>
+        All Dishes
+      </Link>
       <Link to="/cart" className={styles.link}>
         Cart
       </Link>

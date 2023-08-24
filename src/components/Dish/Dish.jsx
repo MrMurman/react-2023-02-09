@@ -11,12 +11,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectDishCount } from "../../store/cart/selectors";
 import { selectDishByID } from "../../store/entities/dish/selectors";
 import classNames from "classnames";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 // import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
 export const Dish = ({ dishID, className }) => {
   const dish = useSelector((state) => selectDishByID(state, dishID)); //used to be {dishID}, but we changed selector
   //const [count, setCount] = useState(0);
   //const { count, increment, decrement } = useCount({ max: 6 });
+  const { allDishes } = useParams();
 
   const count = useSelector((state) =>
     selectDishCount(state, { dishName: dish?.name })
@@ -43,33 +45,41 @@ export const Dish = ({ dishID, className }) => {
       {/* style={{ backgroundColor: "red", color: "white" }} this is entered inside div*/}
       <div className={styles.dish}>
         <div className={styles.title}>
-          <span>{name}</span>-<span>{price}</span>
+          {allDishes ? (
+            <Link>{name}</Link>
+          ) : (
+            <div>
+              <span>{name}</span> - <span>{price}</span>
+            </div>
+          )}
         </div>
-        <div className={styles.action}>
-          <Button
-            onClick={decrement}
-            className={styles.action}
-            size={SIZE.s}
-            viewVariant={BUTTON_VIEW_VARIANT.secondary}
-            disabled={count === 0}
-          >
-            <img className={styles.decrementActionImg} src={Minus} alt="-" />
-          </Button>
-          {count}
-          <Button
-            onClick={increment}
-            className={styles.action}
-            size={SIZE.s}
-            viewVariant={BUTTON_VIEW_VARIANT.secondary}
-            disabled={count === 6}
-          >
-            {/* <div className={styles.incrementActionContent}/>  -- used for unimportant content ie background */}
-            <img className={styles.incrementActionImg} src={Plus} alt="+" />
-            {/* use for important content */}
-            {/* <Plus /> */}
-            {/* via React elem -- used to have a greater control upon SVG's. But if they are heavy, this will greatly decrease performance*/}
-          </Button>
-        </div>
+        {allDishes ? null : (
+          <div className={styles.action}>
+            <Button
+              onClick={decrement}
+              className={styles.action}
+              size={SIZE.s}
+              viewVariant={BUTTON_VIEW_VARIANT.secondary}
+              disabled={count === 0}
+            >
+              <img className={styles.decrementActionImg} src={Minus} alt="-" />
+            </Button>
+            {count}
+            <Button
+              onClick={increment}
+              className={styles.action}
+              size={SIZE.s}
+              viewVariant={BUTTON_VIEW_VARIANT.secondary}
+              disabled={count === 6}
+            >
+              {/* <div className={styles.incrementActionContent}/>  -- used for unimportant content ie background */}
+              <img className={styles.incrementActionImg} src={Plus} alt="+" />
+              {/* use for important content */}
+              {/* <Plus /> */}
+              {/* via React elem -- used to have a greater control upon SVG's. But if they are heavy, this will greatly decrease performance*/}
+            </Button>
+          </div>
+        )}
       </div>
       {count > 0 && !!ingredients.length && (
         <div>

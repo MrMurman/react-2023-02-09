@@ -14,6 +14,7 @@ import { Restaurant } from "./components/Restaurant/Restaurant";
 import { Menu } from "./components/Menu/Menu";
 import { Review } from "./components/Review/Review";
 import { Reviews } from "./components/Reviews/Reviews";
+import { AllDishesPage } from "./pages/AllDishesPage/AllDishesPage";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export const App = () => {
             </Route>
             {/*: inside path means that it is placeholder text. This text can be virtually anything */}
           </Route>
+          <Route path=":allDishes" element={<AllDishesPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="redirect" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFoundPage />} />
