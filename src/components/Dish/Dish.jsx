@@ -12,6 +12,7 @@ import { selectDishCount } from "../../store/cart/selectors";
 import { selectDishByID } from "../../store/entities/dish/selectors";
 import classNames from "classnames";
 import { Link, useParams, useSearchParams } from "react-router-dom";
+import { cartActions } from "../../store/cart";
 // import { ReactComponent as Plus } from "./img/thumb-up-optimized.svg";
 
 export const Dish = ({ dishID, className }) => {
@@ -21,25 +22,33 @@ export const Dish = ({ dishID, className }) => {
   const { allDishes } = useParams();
 
   const count = useSelector((state) =>
-    selectDishCount(state, { dishName: dish?.name })
+    // selectDishCount(state, { dishName: dish?.name })
+    selectDishCount(state, { dishID })
   );
   const dispatch = useDispatch();
-  const increment = () => {
-    dispatch({ type: "incrementDish", payload: dish.name });
-  };
-  const decrement = () => {
-    dispatch({ type: "decrementDish", payload: dish.name });
-  };
+  // const increment = () => {
+  //   dispatch({ type: "incrementDish", payload: dish.name });
+  // };
+  // const decrement = () => {
+  //   dispatch({ type: "decrementDish", payload: dish.name });
+  // };
+
+  const increment = () => dispatch(cartActions.incrementDish(dishID));
+  const decrement = () => dispatch(cartActions.decrementDish(dishID));
 
   if (!dish) {
     return null;
   }
 
-  const { name, price, ingredients } = dish;
+  const { name, ingredients } = dish;
   //const increment = () => setCount(count + 1);
 
   return (
-    <div className={classNames(styles.root, className)}>
+    <div
+      className={classNames(styles.root, className, {
+        [styles.rootBig]: count > 4,
+      })}
+    >
       {/* normally u use className as className="root" but simple css import makes it global */}
       {/* in order to have local css imports, modules are required. They are handled a bit differently */}
       {/* style={{ backgroundColor: "red", color: "white" }} this is entered inside div*/}
@@ -50,9 +59,10 @@ export const Dish = ({ dishID, className }) => {
             <span>{name}</span>
           ) : (
             <div>
-              <span>{name}</span> - <span>{price}</span>
+              <span className={styles.name}>{name}</span>
             </div>
           )}
+          <div>{ingredients?.join(", ")}</div>
         </div>
         {allDishes ? null : (
           <div className={styles.action}>
@@ -82,14 +92,14 @@ export const Dish = ({ dishID, className }) => {
           </div>
         )}
       </div>
-      {count > 0 && !!ingredients.length && (
+      {/* {count > 0 && !!ingredients.length && (
         <div>
           {ingredients.map((ingredient) => {
             console.log("Ingredient inside Dish mapping", ingredient);
             return <Ingredient name={ingredient} key={ingredient} />;
           })}
         </div>
-      )}
+      )} */}
     </div>
 
     // <>

@@ -7,16 +7,18 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     incrementDish: (state, { payload }) => {
-      state.status = {
-        ...state,
-        payload: state[payload] ? state[payload] + 1 : 1,
-      };
+      state[payload] = state[payload] ? state[payload] + 1 : 1;
+      // state.status = {
+      //   ...state,
+      //   payload: state[payload] ? state[payload] + 1 : 1,
+      // };
     },
     decrementDish: (state, { payload }) => {
-      state.status = {
-        ...state,
-        payload: state[payload] !== 0 ? state[payload] - 1 : 0,
-      };
+      state[payload] = state[payload] !== 0 ? state[payload] - 1 : 0;
+      // state.status = {
+      //   ...state,
+      //   payload: state[payload] !== 0 ? state[payload] - 1 : 0,
+      // };
     },
   },
 });

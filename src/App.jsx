@@ -33,7 +33,7 @@ export const App = () => {
             <Route index element={<span>Select restaurant</span>} />
             {/* only one index path and "*" per level of nesting */}
             <Route path=":restaurantID" element={<Restaurant />}>
-              <Route index element={<Navigate to="menu" />} />
+              <Route index element={<Navigate to="menu" replace />} />
               <Route path="menu" element={<Menu />} />
               <Route path="reviews" element={<Reviews />} />
             </Route>

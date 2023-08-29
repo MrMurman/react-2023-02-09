@@ -10,6 +10,9 @@ export const selectDishByID = dishSelectors.selectById;
 // const selectDishByID = (state, {dishID}) => dishSelectors.selectByID(state, dishID)
 // this is an exact function handler that envelops the required func and passes "cultivated" args
 
+export const selectDishNameByID = (state, { dishID }) =>
+  selectDishByID(state, { dishID })?.name;
+
 export const selectDishIDs = dishSelectors.selectIds;
 // = (state) => selectDishModule(state).ids;
 

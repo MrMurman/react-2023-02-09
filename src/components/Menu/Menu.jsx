@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export const Menu = () => {
   const { restaurantID } = useParams();
   const dispatch = useDispatch();
+
   const menu = useSelector((state) =>
     selectRestaurantMenuByID(state, { restaurantID })
   );

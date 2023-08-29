@@ -1,0 +1,11 @@
+.root {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 18px;
+
+  transition: color 0.2s;
+}
+
+.root:hover {
+  color: gray;
+}

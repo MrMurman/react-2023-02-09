@@ -32,3 +32,10 @@ export const selectIsRestaurantLoading = (state) =>
 
 export const selectIsRestaurantLoaded = (state) =>
   selectRestaurantLoadingStatus(state) === REQUEST_STATUSES.success;
+
+export const selectRestaurantIDsFilteredByDishID = (state, { dishID }) =>
+  selectRestaurantIDs(state).filter((restaurantID) => {
+    const restaurant = selectRestaurantByID(state, { restaurantID });
+
+    return !!restaurant?.menu.includes(dishID);
+  });
