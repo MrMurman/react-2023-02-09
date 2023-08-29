@@ -9,7 +9,7 @@ export const Cart = () => {
   return (
     <ul>
       {cart.map(([name, count]) => (
-        <li>
+        <li key={name}>
           {name} : {count}
         </li>
       ))}

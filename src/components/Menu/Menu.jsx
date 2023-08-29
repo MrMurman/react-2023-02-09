@@ -31,7 +31,7 @@ export const Menu = () => {
       <h3>Menu</h3>
       <div className={StyleSheet.dishes}>
         {menu.map((dishID) => (
-          <Dish dishID={dishID} className={styles.dish} />
+          <Dish dishID={dishID} className={styles.dish} key={dishID} />
         ))}
       </div>
       <Button onClick={() => navigate("/cart")}>

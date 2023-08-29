@@ -35,7 +35,11 @@ export const Reviews = () => {
       <h3>Reviews</h3>
       <div className={styles.reviews}>
         {reviews.map((reviewID) => (
-          <Review className={styles.review} reviewID={reviewID} />
+          <Review
+            className={styles.review}
+            reviewID={reviewID}
+            key={reviewID}
+          />
         ))}
       </div>
       {/* <NewReviewForm /> */}

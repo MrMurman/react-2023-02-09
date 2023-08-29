@@ -72,6 +72,7 @@ export const Rating = ({
               className={classNames(styles.star, styles[size])}
               onClick={() => onChange?.(index + 1)} //+1 so that rating becomes 1 at index 0
               alt={index >= value ? "black" : "gold"}
+              key={index}
             />
           ))}
     </div>

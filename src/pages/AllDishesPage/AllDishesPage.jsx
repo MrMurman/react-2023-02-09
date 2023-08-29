@@ -8,7 +8,7 @@ import {
 } from "../../store/entities/dish/selectors";
 import { loadAllDishes } from "../../store/entities/dish/thunks/loadAllDishes";
 import { Dish } from "../../components/Dish/Dish";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export const AllDishesPage = () => {
   const dispatch = useDispatch();
@@ -56,8 +56,12 @@ export const AllDishesPage = () => {
       />
       <div>
         {dishes.map((dishID) => {
-          console.log(dishID);
-          return <Dish dishID={dishID.id} />;
+          // console.log(dishID);
+          return (
+            <Link to={`/allDishes/${dishID.id}`} key={dishID.id}>
+              <Dish dishID={dishID.id} />
+            </Link>
+          );
         })}
       </div>
     </div>

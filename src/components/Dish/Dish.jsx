@@ -46,7 +46,8 @@ export const Dish = ({ dishID, className }) => {
       <div className={styles.dish}>
         <div className={styles.title}>
           {allDishes ? (
-            <Link>{name}</Link>
+            // <Link to={dishID}>{name}</Link>
+            <span>{name}</span>
           ) : (
             <div>
               <span>{name}</span> - <span>{price}</span>
@@ -83,9 +84,10 @@ export const Dish = ({ dishID, className }) => {
       </div>
       {count > 0 && !!ingredients.length && (
         <div>
-          {ingredients.map((ingredient) => (
-            <Ingredient name={ingredient} />
-          ))}
+          {ingredients.map((ingredient) => {
+            console.log("Ingredient inside Dish mapping", ingredient);
+            return <Ingredient name={ingredient} key={ingredient} />;
+          })}
         </div>
       )}
     </div>

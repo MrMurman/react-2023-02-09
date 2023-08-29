@@ -22,10 +22,10 @@ export const selectDishesFilteredByName = (state, { searchValue }) =>
       ({ name }) => name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
     );
 
-export const selectDishesFilteredByNameTwo = ({ searchValue }) =>
-  dishSelectors.selectAll.filter(
-    ({ name }) => name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
-  );
+// export const selectDishesFilteredByNameTwo = ({ searchValue }) =>
+//   dishSelectors.selectAll.filter(
+//     ({ name }) => name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+//   );
 
 export const selectDishLoadingStatus = (state) =>
   selectDishModule(state).status;
